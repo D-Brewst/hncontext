@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Search from './components/Search';
+import History from './components/History';
+import Nav from './components/Nav';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
+import { HistoryProvider } from './utils/HistoryContext';
+import './styles.css';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <HistoryProvider>
+      <Router>
+        <Nav/>
+        <Switch>
+          <Route exact path="/search">
+            <Search/>
+          </Route>
+          <Route exact path="/history">
+            <History/>
+          </Route>
+          <Route exact path="*">
+            <Redirect to="/search" />
+          </Route>
+        </Switch>
+      </Router>
+    </HistoryProvider>
   );
 }
 

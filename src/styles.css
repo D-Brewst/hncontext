@@ -1,0 +1,8 @@
+.nav{
+    text-align: right;
+}
+
+.nav__link{
+    display: inline;
+    padding: 20px 10px;
+}
